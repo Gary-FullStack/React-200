@@ -1,57 +1,25 @@
 import React from "react";
+import Header from './Header';
+import Player from './Player';
 
 
-
-const Player = (props) => {
-  return (
-    <div className="player">
-      <span className="player-name">
-        <button className="remove-player" onClick={() => props.removePlayer(props.id)}>✖</button>
-        {props.name}
-      </span>
-
-      <Counter />
-    </div>
-  );
-}
-
-const Counter = () => {
-  const [score, setScore] = React.useState(0);
-
-  const incrementScore = () => {
-    setScore(prevScore => prevScore + 1);
-  }
-
-  const decrementScore = () => {
-    setScore(prevScore => prevScore - 1);
-  }
-
-  return (
-    <div className="counter">
-      <button className="counter-action decrement" onClick={() => decrementScore()}> - </button>
-      <span className="counter-score">{score}</span>
-      <button className="counter-action increment" onClick={() => incrementScore()}> + </button>
-    </div>
-  );
-
-}
 
 const App = () => {
   const [players, setPlayers] = React.useState([
     {
-      name: "Guil",
+      name: "Bob",
       id: 1
     },
     {
-      name: "Treasure",
+      name: "Tom",
       id: 2
     },
     {
-      name: "Ashley",
+      name: "Jen",
       id: 3
     },
     {
-      name: "James",
+      name: "Bubba",
       id: 4
     }
   ]);
@@ -82,3 +50,4 @@ const App = () => {
 }
 
 export default App;
+

@@ -7,4 +7,6 @@ const Header = (props) => {
         <span className="stats">Players: {props.totalPlayers}</span>
       </header>
     );
-  }
+}
+  
+export default Header;
