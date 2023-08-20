@@ -1,53 +1,67 @@
 import React from "react";
-import Header from './Header';
-import Player from './Player';
-
-
+import Header from "./Header";
+import Player from "./Player";
 
 const App = () => {
   const [players, setPlayers] = React.useState([
     {
       name: "Bob",
-      id: 1
+      score: 0,
+      id: 1,
     },
     {
       name: "Tom",
-      id: 2
+      score: 0,
+      id: 2,
     },
     {
       name: "Jen",
-      id: 3
+      score: 0,
+      id: 3,
     },
     {
       name: "Bubba",
-      id: 4
-    }
+      score: 0,
+      id: 4,
+    },
   ]);
 
   const handleRemovePlayer = (id) => {
-    setPlayers(prevPlayers => prevPlayers.filter(p => p.id !== id));
-  }
+    setPlayers((prevPlayers) => prevPlayers.filter((p) => p.id !== id));
+  };
+
+  const handleScoreChange = (id, delta) => {
+    setPlayers((prevPlayers) =>
+      prevPlayers.map((player) => {
+        if (player.id === id) {
+          return {
+            name: player.name,
+            score: player.score + delta,
+            id: player.id,
+          };
+        }
+        return player;
+      })
+    );
+  };
 
   return (
     <div className="scoreboard">
-      <Header
-        title="Scoreboard"
-        totalPlayers={players.length}
-      />
+      <Header title="Scoreboard" totalPlayers={players.length} />
 
       {/* Players list */}
-      {players.map(player =>
+      {players.map((player) => (
         <Player
           name={player.name}
+          score={player.score}
           id={player.id}
           key={player.id.toString()}
           removePlayer={handleRemovePlayer}
+          changeScore={handleScoreChange}
         />
-      )}
+      ))}
     </div>
   );
-
-}
+};
 
 export default App;
-
