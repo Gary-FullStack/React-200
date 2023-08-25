@@ -5,24 +5,30 @@ import GifList from "./Components/GifList";
 
 function App() {
   const [gifs, setGifs] = useState([]);
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState("funny");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
-      axios
-        .get(
-          `https://api.giphy.com/v1/gifs/search?
-        api_key=N9IWMw0x8qCTh7LU3mOSOStjPkLQOT3o&q=${query}&limit=24&rating=r`
-        )
-        .then((response) => {
-          // handle success
+    setLoading(true);
+    let activeFetch = true;
+    axios
+      .get(
+        `https://api.giphy.com/v1/gifs/search?q=${query}&api_key=N9IWMw0x8qCTh7LU3mOSOStjPkLQOT3o&limit=24&rating=r`
+      )
+      .then((response) => {
+        // handle success
+        if (activeFetch) {
           setGifs(response.data.data);
-        })
-        .catch((error) => {
-          // handle error
-          console.log("Error fetching and parsing data", error);
-        });
-    }, Math.ceil(Math.random() * 10000));
+          setLoading(false);
+        }
+      })
+      .catch((error) => {
+        // handle error
+        console.log("Error fetching and parsing data", error);
+      });
+    return () => {
+      activeFetch = false;
+    };
   }, [query]);
 
   const handleQueryChange = (searchText) => {
@@ -38,7 +44,7 @@ function App() {
         </div>
       </div>
       <div className="main-content">
-        <GifList data={gifs} />
+        {loading ? <p>Loading...</p> : <GifList data={gifs} />}
       </div>
     </div>
   );
