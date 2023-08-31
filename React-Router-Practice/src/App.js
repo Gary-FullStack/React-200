@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
+import { HTMLCourses, CSSCourses, JSCourses } from "./data/courses";
 
 // components
 import Home from "./components/Home";
@@ -7,10 +8,8 @@ import About from "./components/About";
 import Header from "./components/Header";
 import Teachers from "./components/Teachers";
 import Courses from "./components/Courses";
-import HTML from "./components/courses/HTML";
-import CSS from "./components/courses/CSS";
-import JavaScript from "./components/courses/JavaScript";
 import NotFound from "./components/NotFound";
+import CourseContainer from "./components/courses/CourseContainer";
 
 function App() {
   return (
@@ -22,9 +21,12 @@ function App() {
         <Route path="teachers" element={<Teachers />} />
         <Route path="courses" element={<Courses />}>
           <Route index element={<Navigate replace to="html" />} />
-          <Route path="html" element={<HTML />} />
-          <Route path="css" element={<CSS />} />
-          <Route path="javascript" element={<JavaScript />} />
+          <Route path="html" element={<CourseContainer data={HTMLCourses} />} />
+          <Route path="css" element={<CourseContainer data={CSSCourses} />} />
+          <Route
+            path="javascript"
+            element={<CourseContainer data={JSCourses} />}
+          />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
