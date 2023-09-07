@@ -21,7 +21,7 @@ function App() {
         <Route path="about" element={<About />} />
         <Route path="teachers">
           <Route index element={<Teachers />} />
-          <Route path=":topic/:fname-:lname" element={<Featured />} />
+          <Route path=":topic/:name" element={<Featured />} />
         </Route>
         <Route path="courses" element={<Courses />}>
           <Route index element={<Navigate replace to="html" />} />
