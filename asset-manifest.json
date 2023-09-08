@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Gary-FullStack/React-200/tree/main/Scoreboard/static/css/main.a0b44281.css",
+    "main.js": "/Gary-FullStack/React-200/tree/main/Scoreboard/static/js/main.7747f8cd.js",
+    "index.html": "/Gary-FullStack/React-200/tree/main/Scoreboard/index.html",
+    "main.a0b44281.css.map": "/Gary-FullStack/React-200/tree/main/Scoreboard/static/css/main.a0b44281.css.map",
+    "main.7747f8cd.js.map": "/Gary-FullStack/React-200/tree/main/Scoreboard/static/js/main.7747f8cd.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a0b44281.css",
+    "static/js/main.7747f8cd.js"
+  ]
+}
