@@ -1,7 +1,13 @@
-import { useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRef, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import UserContext from "../context/UserContext";
+import ThemeContext from "../context/ThemeContext";
 
-const UserSignIn = (props) => {
+const UserSignIn = () => {
+  // Context
+  const { actions } = useContext(UserContext);
+  const { accentColor } = useContext(ThemeContext);
+
   // State
   const username = useRef(null);
   const password = useRef(null);
@@ -11,14 +17,14 @@ const UserSignIn = (props) => {
   // Event Handlers
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.signIn(username.current.value, password.current.value);
+    actions.signIn(username.current.value, password.current.value);
     navigate("/");
-  }
+  };
 
   const handleCancel = (event) => {
     event.preventDefault();
-    navigate('/');
-  }
+    navigate("/");
+  };
 
   return (
     <div className="bounds">
@@ -31,22 +37,36 @@ const UserSignIn = (props) => {
               required
               type="text"
               ref={username}
-              placeholder="Username" />
+              placeholder="Username"
+            />
             <input
               id="password"
               required
               type="password"
               ref={password}
-              placeholder="Password" />
+              placeholder="Password"
+            />
             <div className="pad-bottom">
-              <button className="button" type="submit" style={{ background: props.accentColor }}>Sign In</button>
-              <button className="button button-secondary" style={{ color: props.accentColor }} onClick={handleCancel}>Cancel</button>
+              <button
+                className="button"
+                type="submit"
+                style={{ background: accentColor }}
+              >
+                Sign In
+              </button>
+              <button
+                className="button button-secondary"
+                style={{ color: accentColor }}
+                onClick={handleCancel}
+              >
+                Cancel
+              </button>
             </div>
           </form>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default UserSignIn;
